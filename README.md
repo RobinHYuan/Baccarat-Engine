@@ -8,6 +8,6 @@ In this lab, I will be using System Verilog to design a simple Baccarat Engine o
 * **scorehand.sv** &nbsp;  &nbsp; &nbsp; and **tb_scorehand.sv**
 * **datapath.sv** &nbsp;  &nbsp; &nbsp;  &nbsp; and **tb_datapath.sv**
 * **statemachine.sv**&nbsp; and **tb_statemachine.sv**
-* **task5.sv**
+* **task5.sv** &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; and **tb_task5**
 * **task5.qsf**
 * **DE1_SoC.qsf**
