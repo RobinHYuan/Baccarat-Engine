@@ -10,3 +10,4 @@ In this lab, we will be using System Verilog to design a simple Baccarat Engine 
 * **statemachine.sv**&nbsp; and **tb_statemachine.sv**
 * **task5.sv**
 * **task5.qsf**
+* **DE1_SoC.qsf**
