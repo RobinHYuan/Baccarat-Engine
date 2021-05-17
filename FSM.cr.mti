@@ -1,0 +1,8 @@
+C:/Users/circl/OneDrive/Desktop/CPEN311/Labs/Lab1/lab1-cpen311-RobinHYuan/task5/tb_statemachine.sv {1 {vlog -work work -sv -stats=none C:/Users/circl/OneDrive/Desktop/CPEN311/Labs/Lab1/lab1-cpen311-RobinHYuan/task5/tb_statemachine.sv
+Model Technology ModelSim - Intel FPGA Edition vlog 10.5b Compiler 2016.10 Oct  5 2016
+-- Compiling module tb_statemachine
+
+Top level modules:
+	tb_statemachine
+
+} {} {}}
