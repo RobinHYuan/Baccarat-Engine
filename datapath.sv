@@ -51,10 +51,10 @@ endmodule
 
  /*===============================================================
  Module-Reg4:
- This module is used  to store the card on player's/dealer's hands.
+ This module is used to store the card on player's/dealer's hands.
  It should include a reset function; howerver, due to the nature of 
  low-active reset and the reverse keybind of DE1_SoC, it will only 
- perform reset iff we see falling edge of the "slow clock (Key0)"
+ perform reset iff we see rising edge of the "slow clock (Key0)"
  and Key1 is also pressed indicating that resetb == 0.
  =================================================================*/
 
