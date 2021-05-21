@@ -16,30 +16,30 @@ module statemachine(
     `define halt    3'b111
 
     logic [2:0] current_state;
+	 logic P3toD3 ;
+	 assign P3toD3=  ((dscore == 4'd6) && (pcard3>4'd5) && (pcard3<4'd8)) ||
+                     ((dscore == 4'd5) && (pcard3>4'd3) && (pcard3<4'd8)) ||
+                     ((dscore == 4'd4) && (pcard3>4'd1) && (pcard3<4'd8)) ||
+                     ((dscore == 4'd3) && (pcard3!==4'd8)) || 
+                     ((dscore <  4'd3) );
 
-    always_ff @( negedge slow_clock ) begin
-
+    always@( negedge slow_clock ) begin
         if(!resetb) current_state = `reset;
-        else case (current_state) 
-
+        else 	
+				case (current_state) 			
                 `reset   : current_state = `card_P1;
                 `card_P1 : current_state = `card_D1;
                 `card_D1 : current_state = `card_P2;
                 `card_P2 : current_state = `card_D2;
-                `card_D2 : if           ( dscore > 7 || pscore > 7) current_state = `halt;
-                           else if      ( pscore > 5 && dscore < 6) current_state = `card_D3;
-                                else if ( pscore < 6)               current_state = `card_P3;
-                                    else                            current_state = `halt;
-                `card_P3 : if 
-                           (
-                               (dscore == 4'd6 && pcard3>4'd5) ||
-                               (dscore == 4'd5 && pcard3>4'd3) ||
-                               (dscore == 4'd4 && pcard3>4'd1) ||
-                               (dscore == 4'd3 && pcard3!==4'd8) || 
-                               (dscore <  4'd3 )
-                           ) current_state = `card_D3;
+                `card_D2 : if  ( (pscore < 4'd6) && (dscore <4'd8))  current_state = `card_P3;  
+										else if  ((( pscore == 4'd6) || (pscore == 4'd7)) && (dscore < 4'd6))  current_state = `card_D3; 
+												else  if ((pscore>7) || (dscore >7)) current_state =`halt;
+                                                        else current_state = `halt; 
+                `card_P3 : if (P3toD3) current_state = `card_D3;
                            else current_state = `halt;
                 `card_D3: current_state = `halt;
+			    `halt: current_state =`halt;
+                default: current_state = `reset;
         endcase 
     
 
@@ -55,6 +55,7 @@ module statemachine(
             `halt    : if        (dscore > pscore) {load_pcard1,load_pcard2,load_pcard3,load_dcard1,load_dcard2,load_dcard3,player_win_light,dealer_win_light} = 8'b000_000_01;
                         else if  (dscore < pscore) {load_pcard1,load_pcard2,load_pcard3,load_dcard1,load_dcard2,load_dcard3,player_win_light,dealer_win_light} = 8'b000_000_10;
                             else                   {load_pcard1,load_pcard2,load_pcard3,load_dcard1,load_dcard2,load_dcard3,player_win_light,dealer_win_light} = 8'b000_000_11;
+            default  : {load_pcard1,load_pcard2,load_pcard3,load_dcard1,load_dcard2,load_dcard3,player_win_light,dealer_win_light} = 8'b000_000_00;
         endcase
     end
 endmodule

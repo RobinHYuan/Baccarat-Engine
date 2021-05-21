@@ -45,17 +45,17 @@ module tb_datapath();
         load_dcard1 = 0; load_dcard2 = 0; load_dcard3 = 0;#5;
      
         resetb = !resetb;
-        slow_clock = ! slow_clock; #15;
-        slow_clock = ! slow_clock; #15;
+        slow_clock = ! slow_clock; #15; //negedge
+        slow_clock = ! slow_clock; #15; //posegde
 
-        resetb = !resetb;; #10;
+        resetb = !resetb; #10; //release reset button
        
         /*======================================
         Test Reset:
         See if the reset function works.
         Remeber Resetb is low-active meaning that
         we will only peform reset when we see a
-        falling egde
+        low on resetb when slow clock is rising
         =========================================*/
         assert ( (DUT.pcard1_out == 4'b0) && (DUT.pcard2_out == 4'b0) && (DUT.pcard3_out == 4'b0) && (DUT.pscore_out == 4'b0)) 
         else  begin $error("Player card reset failed"); err = 1;  end 
@@ -63,37 +63,41 @@ module tb_datapath();
         assert ( (DUT.dcard1_out == 4'b0) && (DUT.dcard2_out == 4'b0) && (DUT.dcard3_out == 4'b0)  && (DUT.dscore_out == 4'b0)) 
         else  begin $error("Dealer card reset failed"); err = 1;  end 
 
+        assert ( err == 0) $display("Check: Reg4 Reset  %d ns;",$time);
+        else  begin $error("Reset failed"); err = 1;  end 
+        //All cards should be set to zero ^
+
         /*==========================================================
         Get New Card:
-        Note: The lab handout requires us to "sample the current value
-        of this counter (the output of module, dealcard) when the user
-        presses the 'next step' key." Therefore, we should turn on load 
-        whenever we see a falling edge of "slow_clock" since the logic 
-        status of it while halting is high due to the reverse keybind 
-        of DE1-SOC. Similarily, we will turn off the load whenever we 
-        detect a rising edge of slow_clock indicating the user has 
-        released the key.
+        Note: My design will update its state of the finite statemachine 
+        on the negedge of slow clock, and load the value in the following 
+        posedge of the slow clock. This avoids the ambiguities in modelsim
+        simulation. Also, since KEY1 is logic high while halting; pressing
+        it resukts in a negedge while releasing it causes a posedge. 
+        As a result, negedges will always come before posegdes.
         ============================================================*/
   	    
-        slow_clock  = ! slow_clock; 
-	    load_pcard1 = 1;#15;
+        slow_clock  = 1; #15;
+        slow_clock  = 0;
+	    load_pcard1 = 1;#15; //Falling edge updates the state
 
-	    slow_clock  = ! slow_clock;
+	    slow_clock  = ! slow_clock; #5; //posedge
+
 	    load_pcard1 = 0;
         temp_store  = DUT.pcard1_out;
         assert((DUT.new_card !== 4'b0) && (DUT.pcard1_out !== 4'b0 )) 
-        temp_pcard1 = DUT.pcard1_out;
+        begin temp_pcard1 = DUT.pcard1_out;$display("Check: Player Card 1 Loaded  %d ns;",$time); end
         else begin $error("Player cannot get a new card[1]"); err = 1; end
         #15;
 
 	    /*=========================================================
         Toggle Slow-clock to Test Load Function:
         The register should only update its output iff the load 
-        signal is high, and it sees a negedge of slow clock. 
+        signal is high, and when it sees a posedge of slow clock. 
         ===========================================================*/
-        slow_clock = ! slow_clock; #15; 
-        slow_clock = ! slow_clock;
-        assert( (DUT.pcard1_out == temp_store ))
+        slow_clock = ! slow_clock; #15; //negedge
+        slow_clock = ! slow_clock; //posedge 
+        assert( (DUT.pcard1_out == temp_store ))$display("Check: Load Function  %d ns;",$time);
         else begin $error("Load function failed"); err = 1; end #25;
 
         /*============================================================
@@ -101,43 +105,52 @@ module tb_datapath();
         We will load random cards into all six registers and see if the
         results of scorehand modules matches with the cards
         ==============================================================*/
-        assert(slow_clock == 1) else $fatal(">>>CHECK SLOW CLOCK STATE<<<");
+        assert(slow_clock == 1) else $fatal(">>>CHECK SLOW CLOCK STATE<<<"); #5
 
-        slow_clock  = ! slow_clock; 
+        slow_clock  = ! slow_clock; //neg
 	    load_pcard2 = 1; #5;
-	    slow_clock  = ! slow_clock;
+        slow_clock  = ! slow_clock; #5;//pos
+        slow_clock  = ! slow_clock;//Neg
 	    load_pcard2 = 0; #25;
+
         assert((DUT.new_card !== 4'b0) && (DUT.pcard2_out !== 4'b0 )) 
             temp_pcard2 = DUT.pcard2_out;
         else begin $error("Player cannot get a new card[2]"); err = 1; end
 
-        slow_clock  = ! slow_clock; 
+        slow_clock = 1; #5;
+        slow_clock  = ! slow_clock; //neg
 	    load_pcard3 = 1; #15;
-	    slow_clock  = ! slow_clock;
+	    slow_clock  = ! slow_clock; #5;//pos
+        slow_clock  = ! slow_clock;//Neg
 	    load_pcard3 = 0; #10
         assert((DUT.new_card !== 4'b0) && (DUT.pcard3_out !== 4'b0 )) 
             temp_pcard3 = DUT.pcard3_out;
         else begin $error("Player cannot get a new card[3]"); err = 1; end
 
+        slow_clock = 1; #5;
         slow_clock  = ! slow_clock; 
 	    load_dcard1 = 1; #5;
-	    slow_clock  = ! slow_clock;
+	    slow_clock  = ! slow_clock;#5;
 	    load_dcard1 = 0; #30;
         assert((DUT.new_card !== 4'b0) && (DUT.dcard1_out !== 4'b0 )) 
             temp_dcard1 = DUT.dcard1_out;
         else begin $error("Dealer cannot get a new card[1]"); err = 1; end
 
+        slow_clock = 1; #5;
         slow_clock  = ! slow_clock; 
 	    load_dcard2 = 1; #25;
-	    slow_clock  = ! slow_clock;
+	    slow_clock  = ! slow_clock;#5;
+        slow_clock  = ! slow_clock; 
 	    load_dcard2 = 0; #35
         assert((DUT.new_card !== 4'b0) && (DUT.dcard2_out !== 4'b0 )) 
             temp_dcard2 = DUT.dcard2_out;
         else begin $error("Dealer cannot get a new card[2]"); err = 1; end
         
+        slow_clock = 1; #5;
         slow_clock  = ! slow_clock; 
 	    load_dcard3 = 1; #15;
-	    slow_clock  = ! slow_clock;
+        slow_clock  = ! slow_clock;#5;
+	    slow_clock  = ! slow_clock; 
 	    load_dcard3 = 0; #15;
         assert((DUT.new_card !== 4'b0) && (DUT.dcard3_out !== 4'b0 )) 
             temp_dcard3 = DUT.dcard3_out;

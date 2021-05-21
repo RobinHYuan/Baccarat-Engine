@@ -1,10 +1,3 @@
-/*======================================
-This is a purely combinational module
-used for driving the 7-segment display
-on the DE1-SOC using its slider swithces
-=======================================*/
-
-
 module card7seg(input logic [3:0] SW, output logic [6:0] HEX0 );
 always_comb 
 	case(SW)
@@ -22,7 +15,6 @@ always_comb
     4'b1_011: HEX0 = 7'b1_100_001; // J
     4'b1_100: HEX0 = 7'b0_011_000; // Q
     4'b1_101: HEX0 = 7'b0_001_001; // K
-	default : HEX0 = 7'b0_001_110; // F 
+	default : HEX0 = 7'b1_000_000; // default
 	endcase
 endmodule
-

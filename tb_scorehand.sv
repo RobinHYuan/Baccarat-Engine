@@ -16,7 +16,6 @@ module tb_scorehand();
              assert(total == total_tb)
              else $fatal("Error Detected");
       end
-
       $stop;
       
   end 

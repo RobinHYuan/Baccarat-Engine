@@ -8,16 +8,34 @@ module datapath(input logic slow_clock, input logic fast_clock, input logic rese
 
 
         logic [3:0] new_card,pcard1_out,pcard2_out,dcard1_out,dcard2_out,dcard3_out;
-    
+  
 
         dealcard newcard(fast_clock, resetb, new_card);
 
-        reg4 PCard1(resetb, slow_clock, new_card, load_pcard1, pcard1_out);
-        reg4 PCard2(resetb, slow_clock, new_card, load_pcard2, pcard2_out);
-        reg4 PCard3(resetb, slow_clock, new_card, load_pcard3, pcard3_out);
-        reg4 DCard1(resetb, slow_clock, new_card, load_dcard1, dcard1_out);
-        reg4 DCard2(resetb, slow_clock, new_card, load_dcard2, dcard2_out);
-        reg4 DCard3(resetb, slow_clock, new_card, load_dcard3, dcard3_out);
+        //reg4 PCard1(resetb, slow_clock, new_card, load_pcard1, pcard1_out);
+        //reg4 PCard2(resetb, slow_clock, new_card,     load_pcard2, pcard2_out);
+        //reg4 PCard3(resetb, slow_clock, new_card, load_pcard3, pcard3_out);
+        //reg4 DCard1(resetb, slow_clock, new_card, load_dcard1, dcard1_out);
+        //reg4 DCard2(resetb, slow_clock, new_card, load_dcard2, dcard2_out);
+        //reg4 DCard3(resetb, slow_clock, new_card, load_dcard3, dcard3_out);
+        always@( posedge slow_clock ) begin 
+                if (resetb==0) {pcard1_out, pcard2_out, pcard3_out, dcard1_out, dcard2_out, dcard3_out} = 0;
+                else begin
+                        case ({load_pcard1,load_pcard2,load_pcard3,load_dcard1,load_dcard2,load_dcard3})
+                        6'b100_000: {pcard1_out, pcard2_out, pcard3_out, dcard1_out, dcard2_out, dcard3_out} ={new_card,   pcard2_out, pcard3_out, dcard1_out, dcard2_out, dcard3_out};
+                        6'b010_000: {pcard1_out, pcard2_out, pcard3_out, dcard1_out, dcard2_out, dcard3_out} ={pcard1_out, new_card,   pcard3_out, dcard1_out, dcard2_out, dcard3_out};
+                        6'b001_000: {pcard1_out, pcard2_out, pcard3_out, dcard1_out, dcard2_out, dcard3_out} ={pcard1_out, pcard2_out, new_card,   dcard1_out, dcard2_out, dcard3_out};
+                        6'b000_100: {pcard1_out, pcard2_out, pcard3_out, dcard1_out, dcard2_out, dcard3_out} ={pcard1_out, pcard2_out, pcard3_out, new_card,   dcard2_out, dcard3_out};
+                        6'b000_010: {pcard1_out, pcard2_out, pcard3_out, dcard1_out, dcard2_out, dcard3_out} ={pcard1_out, pcard2_out, pcard3_out, dcard1_out, new_card,   dcard3_out};
+                        6'b000_001: {pcard1_out, pcard2_out, pcard3_out, dcard1_out, dcard2_out, dcard3_out} ={pcard1_out, pcard2_out, pcard3_out, dcard1_out, dcard2_out, new_card};
+                        default:    {pcard1_out, pcard2_out, pcard3_out, dcard1_out, dcard2_out, dcard3_out} ={pcard1_out, pcard2_out, pcard3_out, dcard1_out, dcard2_out, dcard3_out};
+                        endcase
+                end   
+                
+        end
+
+
+
 
         scorehand Player(pcard1_out, pcard2_out, pcard3_out, pscore_out);
         scorehand Dealer(dcard1_out, dcard2_out, dcard3_out, dscore_out);
@@ -48,7 +66,7 @@ module reg4 (resetb,clk,in,load,out);
     wire   [n-1:0] mux_out;
 
     assign mux_out = load ? in:out;
-    always @( negedge clk)
+    always @( posedge clk)
         if(resetb == 0) out = 0;
         else out = mux_out;
 endmodule

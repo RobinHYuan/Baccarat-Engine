@@ -24,7 +24,7 @@ module tb_statemachine();
     end
 
     /*========================================
-        Fast Clock Setup:
+        Setup:
         Set all signals to the appropriate states
      ===========================================*/
     initial begin
