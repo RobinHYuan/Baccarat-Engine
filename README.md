@@ -18,6 +18,10 @@ https://github.com/RobinHYuan/CPEN311-LAB1/files/6491478/CPEN311_LAB_Handout.pdf
 * **DE1_SoC.qsf**
 
 ------------
+## Design Approach:
+My design is consisit of the following modules: `dealcard`, `card7seg`, `scorehand`, `statemachine`, `datapath` and `task5` where the module `task5` is the top module of the design. 
+
+Modules, `dealcard`, `card7seg`, and`scorehand` are purely combinational and instanriated in the module, `datapath`.
 
 
 ------------
