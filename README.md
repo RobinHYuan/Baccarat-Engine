@@ -62,10 +62,10 @@ In other words, each Ace, 2, 3, 4, 5, 6, 7, 8, and 9 has a value equal the face 
 
 ### 4.2 Sequence: 
 ```
-Player 1st Card -> Dealer 1st Card -> Player 2nd Card  -> Dealer 2nd Card ├──> Player 3rd Card ├──> Dealer 3rd Card -> END
-                                                                          |                    └──> END
-                                                                          ├──> Dealer 3rd Card -> END
-                                                                          └──> END
+Player 1st Card -> Dealer 1st Card -> Player 2nd Card  -> Dealer 2nd Card ├──> Player 3rd Card ├──> Dealer 3rd Card -> END     |
+                                                                          |                    └──> END                        |
+                                                                          ├──> Dealer 3rd Card -> END                          |
+                                                                          └──> END                                             |
 ```
 ### Table 4.3: Drawing Rules
 
