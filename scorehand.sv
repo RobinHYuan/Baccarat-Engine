@@ -7,6 +7,6 @@ assign score2 = card2 > 4'b1001 ? 4'b0000 : card2;
 assign score3 = card3 > 4'b1001 ? 4'b0000 : card3;
 
 assign temp  = (score1 + score2 + score3) % 4'd10;
-assign total = temp[4:0];
+assign total = temp[3:0];
 
 endmodule
