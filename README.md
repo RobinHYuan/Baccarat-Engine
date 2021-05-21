@@ -56,7 +56,15 @@ There are various versions of Baccarat, but we will focus on the simplest, calle
 
 In other words, each Ace, 2, 3, 4, 5, 6, 7, 8, and 9 has a value equal the face value (eg. Ace has value of 1, 2 is a value of 2, 3 has a value of 3, etc.). Tens, Jacks, Queens, and Kings have a value of 0.
 
+#### Sequence: 
+```
+Player 1st Card -> Dealer 1st Card -> Player 2nd Card  -> Dealer 2nd Card ├──> Player 3rd Card ├──> Dealer 3rd Card -> END
+                                                                          |                    └──> END
+                                                                          ├──> Dealer 3rd Card -> END
+                                                                          └──> END
+```
 #### Table 2: Drawing Rules
+
 | Score of First Two Cards | Player | Dealer |
 | ------------- | ------------- |-------------|
 | 0 | Draws a third card  |Draws a third card |
