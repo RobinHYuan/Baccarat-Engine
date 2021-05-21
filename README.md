@@ -28,7 +28,7 @@ https://github.com/RobinHYuan/CPEN311-LAB1/files/6491478/CPEN311_LAB_Handout.pdf
 
 Total Score = \[Score of Card 1  + Score of Card 2 + Score of Card 3 (if it exits) \]  % 10
 
-If either the player or banker or both achieve a total of 8 or 9 after they both receive their second card, the result is announced: a player win, a banker win, or tie. If neither hand has eight or nine, the drawing rules are applied to determine whether the player should receive a third card. Then, based on the value of any card drawn to the player, the drawing rules are applied to determine whether the banker should receive a third card. The coup is then finished, the outcome is announced.
+If either the player or banker or both achieve a total of 8 or 9 after they both receive their second cards, the result is announced: a player win, a banker win, or tie. If neither hand has eight or nine, the drawing rules are applied to determine whether the player should receive a third card. Then, based on the value of any card drawn to the player, the drawing rules are applied to determine whether the banker should receive a third card. The coup is then finished, the outcome is announced.
 
 #### Table 2: Drawing Rules
 | Score of First Two Cards | Player | Dealer |
