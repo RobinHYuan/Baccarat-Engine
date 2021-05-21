@@ -1,14 +1,14 @@
 # CPEN311 LAB1 (Stil Under Construction)
 
-## 1.0 Introduction:
+## 1 Introduction:
 In this lab, I will be using System Verilog to design a simple Baccarat Engine on a DE1-Soc Board via implementing a simple datapath and a finite state machine.
 
-## 1.1 Lab Handout:
+### 1.1 Lab Handout:
 https://github.com/RobinHYuan/CPEN311-LAB1/files/6491478/CPEN311_LAB_Handout.pdf
 
 ------------
 
-## 2.0 Important Files:
+## 2 Important Files:
 * **dealcard.sv** &nbsp; &nbsp;  &nbsp;  &nbsp;&nbsp; and **tb_dealcard.sv**
 * **scorehand.sv** &nbsp;  &nbsp; &nbsp; and **tb_scorehand.sv**
 * **datapath.sv** &nbsp;  &nbsp; &nbsp;  &nbsp; and **tb_datapath.sv**
@@ -18,7 +18,7 @@ https://github.com/RobinHYuan/CPEN311-LAB1/files/6491478/CPEN311_LAB_Handout.pdf
 * **DE1_SoC.qsf**
 
 ------------
-## 3.0 Design Approach:
+## 3 Design Approach:
 ### 3.1 Overview:
 
 
@@ -44,7 +44,7 @@ The module `statemachine` acts as the brain of the game in which it controls whe
 
 ------------
 
-## 4.0 How to Play Baccarat:
+## 4 How to Play Baccarat:
 
 There are various versions of Baccarat, but we will focus on the simplest, called Punto Banco.The following textwill describe the algorithm in sufficient detail for completing this lab
 
