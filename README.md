@@ -40,23 +40,70 @@ The module `statemachine` acts as the brain of the game in which it controls whe
 └── Statemachine
 
 ```
+
+<p align="center"><img src="https://user-images.githubusercontent.com/68177491/119202244-3df66600-ba45-11eb-9ab8-353f749094fe.jpg" width="70%" height="70%" title="block diagram"></p>
+
+<p align="center">
+   <b>Figure 1: Block Diagram</b>
+</p>
+  
 ### 3.3 Functions of Each Module:
 
 #### 3.3.1 task5
 The top of module of the design is `task5`. Two modules are instantiated inside task5 which are `statemachine` and `datapath`. It ensures these two modules are wired correctly, and they can properly communicate with each other. In addtion, `task5` is also responsible for handling the DE1-SoC I/Os including LEDR[0-9], HEX0-HEX5, KEY[0] and KEY[3].
 
+#### 3.3.2 datapath
+The majority of computing is done by `datapath`. Three modules: `dealcard`, `scorehand`, `card7seg` are instantiated inside `datapath`. See the block digram for more details.
+ 
+#### 3.3.3 dealcard
+`dealcard` is responsible for dealing out the cards. The cards drew by the player/dealer need to be random to ensure the integrity on the game. However, it is difficult to generate random numbers in hardware. Therefore, we will design the module as a **counter**  and it should have the following behaviours:
+- Low-active synchronous reset (After reset, it will count from A to K )
+- Increment at every posedge of fast_clock if count/deal_card < 13; if it is equal to 13, it should go back to 1 and continue incrementing at the next posedge.
+- The card will be loaded to whichever reg4 that has a logic high on load (it is usually when the users press KEY0/slow_clock)
+- The card drew by the player/dealer is thus random as the time period between when the users press the KEY0 and press the rest is random.
+- However, it is still predictable if you count the fast_clock cycle when simulating it. It only appears to be random to the users.
 
+#### 3.3.4 scorehand
+`scorehand` is used to compute the score of dealer and player. It uses the output of `reg4` as inputs and evaluates the score according to **Table 4.1**.
+
+#### 3.3.5 card7seg
+`card7seg` is a driver for the seven-segment display. It is purely combinational and follows the rule shown in the figure below.
+
+<p align="center"><img src="https://user-images.githubusercontent.com/68177491/119205237-93824100-ba4c-11eb-8f6d-018e74b939c7.png" width="20%" height="20%" title="block diagram"></p>
+
+<p align="center">
+   <b>Figure 2:  7-seg Display</b>
+</p>
+
+#### 3.3.6 reg4
+`reg4` is NOT instantiated in my modulel. Their instantiations are replace by a block of SV Behavioral Description using always + case statements. Its module is till saved in side `datapath.sv` for reference. It might help you to understand the behavioral Description. `reg4` is a load-and-reset-enabled d-flip-flop. The load signal of each `reg4` is controlled by the statemachine. It will load the newcard issued by `dealcard` whenever  the load is high.
+
+#### 3.3.6 statemachine
+`statemachine` controls how the data flows in `datapath`; in other words, it decides who and when gets a card. The state trasintions need to follow 4.2 Sequence and 4.3 Drawing Rules. My state machine has 8 states in total, which are:
+```  
+    `define reset   3'b000
+    `define card_P1 3'b001
+    `define card_D1 3'b010
+    `define card_P2 3'b011
+    `define card_D2 3'b100
+    `define card_P3 3'b101 
+    `define card_D3 3'b110
+    `define halt    3'b111
+```
+Reset state is used to set all outputs of all 6 of `reg4` to zeros when we re-start the game whereas the halt state is used to declare the game result.
 ------------
 
 ## 4 How to Play Baccarat:
 
 There are various versions of Baccarat, but we will focus on the simplest, called Punto Banco.The following text will describe the algorithm in sufficient detail for completing this lab
 
-###  Tabele 4.1: Score Conversion
+
+###  Tabele 4.1 (Score Conversion) :
 | Score | Cards | 
 | ------------- | ------------- |
 | 0 | 10 - K  |
 | 1 - 9 | A &nbsp;- 9|
+ 
 
 In other words, each Ace, 2, 3, 4, 5, 6, 7, 8, and 9 has a value equal the face value (eg. Ace has value of 1, 2 is a value of 2, 3 has a value of 3, etc.). Tens, Jacks, Queens, and Kings have a value of 0.
 
@@ -67,8 +114,7 @@ Player 1st Card -> Dealer 1st Card -> Player 2nd Card  -> Dealer 2nd Card ├─
                                                                           ├──> Dealer 3rd Card -> END                          |
                                                                           └──> END                                             |
 ```
-### Table 4.3: Drawing Rules
-
+### Table 4.3 (Drawing Rules) :
 | Score of First Two Cards | Player | Dealer |
 | ------------- | ------------- |-------------|
 | 0 | Draws a third card  |Draws a third card |
