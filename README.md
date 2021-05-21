@@ -45,6 +45,9 @@ The module `statemachine` acts as the brain of the game in which it controls whe
 ------------
 
 ## How to Play Baccarat:
+
+There are various versions of Baccarat, but we will focus on the simplest, called Punto Banco.The following textwill describe the algorithm in sufficient detail for completing this lab
+
 ####  Tabele 1: Score Conversion
 | Score | Cards | 
 | ------------- | ------------- |
