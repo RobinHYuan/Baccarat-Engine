@@ -136,4 +136,4 @@ If either the player or banker or both achieve a total of 8 or 9 after they both
 
 ------------
 ## Best Girl Ever - Matou Sakura (Completed Unrelated):
-<img src="https://user-images.githubusercontent.com/68177491/118439998-de423880-b69b-11eb-9c48-a081b97f6286.jpg" width="478" height="700"/>
+<p align="center"><img src="https://user-images.githubusercontent.com/68177491/118439998-de423880-b69b-11eb-9c48-a081b97f6286.jpg" width="50%" height="50%" title="block diagram"></p>
