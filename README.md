@@ -1,14 +1,14 @@
 # CPEN311 LAB1 (Stil Under Construction)
 
-## Introduction:
+## 1.0 Introduction:
 In this lab, I will be using System Verilog to design a simple Baccarat Engine on a DE1-Soc Board via implementing a simple datapath and a finite state machine.
 
-## Lab Handout:
+## 1.1 Lab Handout:
 https://github.com/RobinHYuan/CPEN311-LAB1/files/6491478/CPEN311_LAB_Handout.pdf
 
 ------------
 
-## Important Files:
+## 2.0 Important Files:
 * **dealcard.sv** &nbsp; &nbsp;  &nbsp;  &nbsp;&nbsp; and **tb_dealcard.sv**
 * **scorehand.sv** &nbsp;  &nbsp; &nbsp; and **tb_scorehand.sv**
 * **datapath.sv** &nbsp;  &nbsp; &nbsp;  &nbsp; and **tb_datapath.sv**
@@ -18,8 +18,8 @@ https://github.com/RobinHYuan/CPEN311-LAB1/files/6491478/CPEN311_LAB_Handout.pdf
 * **DE1_SoC.qsf**
 
 ------------
-## Design Approach:
-### Overview:
+## 3.0 Design Approach:
+### 3.1 Overview:
 
 
 My design is consist of the following modules: `dealcard`, `card7seg`, `scorehand`, `statemachine`, `datapath` and `task5` where the module `task5` is the top module of the design. The engine contains a slow_clock (KEY0) and an active-low asynchronous rest (KEY3).
@@ -28,7 +28,7 @@ Modules, `dealcard`, `card7seg`, and`scorehand` are purely combinational and ins
 
 The module `statemachine` acts as the brain of the game in which it controls when to turn on /off each load instructions for `reg4` in `datapath`. It also annouces the final result.
 
-### Design Hierarchy:
+### 3.2 Design Hierarchy:
 
 ```
 ├── task5
@@ -44,11 +44,11 @@ The module `statemachine` acts as the brain of the game in which it controls whe
 
 ------------
 
-## How to Play Baccarat:
+## 4.0 How to Play Baccarat:
 
 There are various versions of Baccarat, but we will focus on the simplest, called Punto Banco.The following textwill describe the algorithm in sufficient detail for completing this lab
 
-###  Tabele 1: Score Conversion
+###  Tabele 4.1: Score Conversion
 | Score | Cards | 
 | ------------- | ------------- |
 | 0 | 10 - K  |
@@ -56,14 +56,14 @@ There are various versions of Baccarat, but we will focus on the simplest, calle
 
 In other words, each Ace, 2, 3, 4, 5, 6, 7, 8, and 9 has a value equal the face value (eg. Ace has value of 1, 2 is a value of 2, 3 has a value of 3, etc.). Tens, Jacks, Queens, and Kings have a value of 0.
 
-### Sequence: 
+### 4.2 Sequence: 
 ```
 Player 1st Card -> Dealer 1st Card -> Player 2nd Card  -> Dealer 2nd Card ├──> Player 3rd Card ├──> Dealer 3rd Card -> END
                                                                           |                    └──> END
                                                                           ├──> Dealer 3rd Card -> END
                                                                           └──> END
 ```
-### Table 2: Drawing Rules
+### Table 4.3: Drawing Rules
 
 | Score of First Two Cards | Player | Dealer |
 | ------------- | ------------- |-------------|
