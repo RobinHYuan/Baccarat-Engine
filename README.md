@@ -1,14 +1,14 @@
 # CPEN311 LAB1 (Stil Under Construction)
 
-### Introduction:
+## Introduction:
 In this lab, I will be using System Verilog to design a simple Baccarat Engine on a DE1-Soc Board via implementing a simple datapath and a finite state machine.
 
-### Lab Handout:
+## Lab Handout:
 https://github.com/RobinHYuan/CPEN311-LAB1/files/6491478/CPEN311_LAB_Handout.pdf
 
 ------------
 
-### Important Files:
+## Important Files:
 * **dealcard.sv** &nbsp; &nbsp;  &nbsp;  &nbsp;&nbsp; and **tb_dealcard.sv**
 * **scorehand.sv** &nbsp;  &nbsp; &nbsp; and **tb_scorehand.sv**
 * **datapath.sv** &nbsp;  &nbsp; &nbsp;  &nbsp; and **tb_datapath.sv**
@@ -19,7 +19,10 @@ https://github.com/RobinHYuan/CPEN311-LAB1/files/6491478/CPEN311_LAB_Handout.pdf
 
 ------------
 
-### How to Play Baccarat:
+
+------------
+
+## How to Play Baccarat:
 ####  Tabele 1: Score Conversion
 | Score | Cards | 
 | ------------- | ------------- |
@@ -45,5 +48,5 @@ Total Score = \[Score of Card 1  + Score of Card 2 + Score of Card 3 (if it exit
 If either the player or banker or both achieve a total of 8 or 9 after they both receive their second cards, the result is announced: a player win, a banker win, or tie. If neither hand has eight or nine, the drawing rules are applied to determine whether the player should receive a third card. Then, based on the value of any card drawn to the player, the drawing rules are applied to determine whether the banker should receive a third card. The coup is then finished, the outcome is announced.
 
 ------------
-### Best Girl Ever - Matou Sakura (Completed Unrelated):
+## Best Girl Ever - Matou Sakura (Completed Unrelated):
 <img src="https://user-images.githubusercontent.com/68177491/118439998-de423880-b69b-11eb-9c48-a081b97f6286.jpg" width="478" height="700"/>
