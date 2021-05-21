@@ -28,6 +28,7 @@ Modules, `card7seg`, and`scorehand` are purely combinational and instantiated in
 
 The module `statemachine` acts as the brain of the game in which it controls when to turn on /off each load instructions for `reg4` in `datapath`. It also annouces the final result.
 
+
 ### 3.2 Design Hierarchy:
 
 ```
