@@ -26,10 +26,6 @@ https://github.com/RobinHYuan/CPEN311-LAB1/files/6491478/CPEN311_LAB_Handout.pdf
 | 0 | 10 - K  |
 | 1 - 9 | A &nbsp;- 9|
 
-Total Score = \[Score of Card 1  + Score of Card 2 + Score of Card 3 (if it exits) \]  % 10
-
-If either the player or banker or both achieve a total of 8 or 9 after they both receive their second cards, the result is announced: a player win, a banker win, or tie. If neither hand has eight or nine, the drawing rules are applied to determine whether the player should receive a third card. Then, based on the value of any card drawn to the player, the drawing rules are applied to determine whether the banker should receive a third card. The coup is then finished, the outcome is announced.
-
 #### Table 2: Drawing Rules
 | Score of First Two Cards | Player | Dealer |
 | ------------- | ------------- |-------------|
@@ -44,6 +40,9 @@ If either the player or banker or both achieve a total of 8 or 9 after they both
 | 8 | Does NOT draw a third card|Does NOT draw a third card|
 | 9 | Does NOT draw a third card|Does NOT draw a third card|
 
+Total Score = \[Score of Card 1  + Score of Card 2 + Score of Card 3 (if it exits) \]  % 10
+
+If either the player or banker or both achieve a total of 8 or 9 after they both receive their second cards, the result is announced: a player win, a banker win, or tie. If neither hand has eight or nine, the drawing rules are applied to determine whether the player should receive a third card. Then, based on the value of any card drawn to the player, the drawing rules are applied to determine whether the banker should receive a third card. The coup is then finished, the outcome is announced.
 
 ------------
 ### Best Girl Ever - Matou Sakura (Completed Unrelated):
