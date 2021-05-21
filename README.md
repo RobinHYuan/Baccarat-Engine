@@ -19,7 +19,7 @@ https://github.com/RobinHYuan/CPEN311-LAB1/files/6491478/CPEN311_LAB_Handout.pdf
 
 ------------
 
-### Rules:
+### How to Play Baccarat:
 ####  Tabele 1: Score Conversion
 | Score | Cards | 
 | ------------- | ------------- |
