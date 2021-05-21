@@ -40,13 +40,17 @@ The module `statemachine` acts as the brain of the game in which it controls whe
 └── Statemachine
 
 ```
+### 3.3 Functions of Each Module:
+
+#### 3.3.1 task5
+The top of module of the design is `task5`. Two modules are instantiated inside task5 which are `statemachine` and `datapath`. It ensures these two modules are wired correctly, and they can properly communicate with each other. In addtion, `task5` is also responsible for handling the DE1-SoC I/Os including LEDR[0-9], HEX0-HEX5, KEY[0] and KEY[3].
 
 
 ------------
 
 ## 4 How to Play Baccarat:
 
-There are various versions of Baccarat, but we will focus on the simplest, called Punto Banco.The following textwill describe the algorithm in sufficient detail for completing this lab
+There are various versions of Baccarat, but we will focus on the simplest, called Punto Banco.The following text will describe the algorithm in sufficient detail for completing this lab
 
 ###  Tabele 4.1: Score Conversion
 | Score | Cards | 
