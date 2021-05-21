@@ -92,6 +92,7 @@ The majority of computing is done by `datapath`. Three modules: `dealcard`, `sco
     `define halt    3'b111
 ```
 Reset state is used to set all outputs of all 6 of `reg4` to zeros when we re-start the game whereas the halt state is used to declare the game result.
+
 ------------
 
 ## 4 How to Play Baccarat:
