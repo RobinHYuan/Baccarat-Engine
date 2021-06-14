@@ -135,5 +135,5 @@ Total Score = \[Score of Card 1  + Score of Card 2 + Score of Card 3 (if it exit
 If either the player or banker or both achieve a total of 8 or 9 after they both receive their second cards, the result is announced: a player-win, a banker-win, or a tie. If neither side has eight or nine, the drawing rules are applied to determine whether the player should receive a third card. Then, based on the value of the card drawn by the player, the drawing rules are applied to determine whether the banker should receive a third card. The coup is then finished, the outcome is announced.
 
 ------------
-## Best Girl Ever - Matou Sakura (Completed Unrelated):
+## Best Girl Ever - Matou Sakura (Completely Unrelated):
 <p align="center"><img src="https://user-images.githubusercontent.com/68177491/118439998-de423880-b69b-11eb-9c48-a081b97f6286.jpg" width="50%" height="50%" title="block diagram"></p>
