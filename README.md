@@ -77,7 +77,7 @@ The majority of computing is done by `datapath`. Three modules: `dealcard`, `sco
 </p>
 
 #### 3.3.6 reg4
-`reg4` is NOT instantiated in my modulel. Their instantiations are replace by a block of SV Behavioral Description using always + case statements. Its module is till saved in side `datapath.sv` for reference. It might help you to understand the behavioral Description. `reg4` is a load-and-reset-enabled d-flip-flop. The load signal of each `reg4` is controlled by the statemachine. It will load the newcard issued by `dealcard` whenever  the load is high.
+`reg4` is NOT instantiated in my modulel. Their instantiations are replace by a block of SV Behavioral Description using always + case statements. The module is saved inside `datapath.sv` for reference. It might help you to understand the behavioral Description. `reg4` is a load-and-reset-enabled d-flip-flop. The load signal of each `reg4` is controlled by the statemachine. It will load the newcard issued by `dealcard` whenever  the load is high.
 
 #### 3.3.6 statemachine
 `statemachine` controls how the data flows in `datapath`; in other words, it decides who and when gets a card. The state trasintions need to follow 4.2 Sequence and 4.3 Drawing Rules. My state machine has 8 states in total, which are:
