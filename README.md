@@ -97,7 +97,7 @@ Reset state is used to set all outputs of all 6 of `reg4` to zeros when we re-st
 
 ## 4 How to Play Baccarat:
 
-There are various versions of Baccarat, but we will focus on the simplest, called Punto Banco.The following text will describe the algorithm in sufficient detail for completing this lab
+There are various versions of Baccarat, but we will focus on the simplest, called Punto Banco. The following text will describe the algorithm in sufficient detail for completing this lab
 
 
 ###  Tabele 4.1 (Score Conversion) :
