@@ -22,7 +22,7 @@ https://github.com/RobinHYuan/CPEN311-LAB1/files/6491478/CPEN311_LAB_Handout.pdf
 ### 3.1 Overview:
 
 
-My design is consist of the following modules: `dealcard`, `card7seg`, `scorehand`, `statemachine`, `datapath` and `task5` where the module `task5` is the top module of the design. The engine contains a slow_clock (KEY0) and an active-low asynchronous rest (KEY3).
+My design is consist of the following modules: `dealcard`, `card7seg`, `scorehand`, `statemachine`, `datapath` and `task5` where `task5` is the top module of the design. The engine contains a slow_clock (KEY0) and an active-low synchronous rest (KEY3).
 
 Modules, `card7seg`, and`scorehand` are purely combinational and instantiated in the module, `datapath`. In addition, module, `datapath` also contains 6 instantiations of a hypothetical module, `reg4`. The module code of `reg 4` is included in datapath.sv; however, its instantiations are replaced by an always block and a case statement in order to cope with the rubric of using behavioural system verilog.
 
